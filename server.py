@@ -20,7 +20,9 @@ def send():
 
         elif (request.form['command'] == "ls"):
             stdout, stderr  = subprocess.Popen(["ls", "-la", quote(request.form['data']) if request.form['data'] else './' ], stderr=subprocess.PIPE, stdout=subprocess.PIPE).communicate()
-                    
+
+        elif (request.form['command'] == "etlrun"):
+            stdout, stderr  = subprocess.Popen(["/home/ubuntu/flask-shell-web-emulation/etl.sh", quote(request.form['data']) if request.form['data'] else '20210331' ], stderr=subprocess.PIPE, stdout=subprocess.PIPE).communicate()        
         else:
             stdout, stderr = (b"command not found", b"")
 
